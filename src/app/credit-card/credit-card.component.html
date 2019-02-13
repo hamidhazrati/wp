@@ -1,0 +1,53 @@
+<div class="creditCardSectionClass">
+  <h3>Enter Card Details</h3>
+  <form [formGroup]="creditCardForm" (ngSubmit)="submit(creditCardForm.value)">
+    <div class="row">
+      <span class="col-sm">Cardholder name</span>
+      <span class="col-sm">
+        <input type="text" formControlName="name" required />
+      </span>
+      <span class="col-sm">e.g. paris or other for error path</span>
+    </div>
+    <div class="row">
+      <span class="col-sm">Card number</span>
+      <span class="col-sm">
+        <input type="text" value="" formControlName="number" required payments-card />
+      </span>
+      <a href='#' class="col-sm" (click)="creditCardForm.patchValue({'number':'4462030000000000'})">e.g. 4462030000000000</a>
+    </div>
+    <div class="row">
+      <span class="col-sm">Expiry</span>
+      <span class="col-sm">
+        <input type="text" formControlName="expiry" payments-expiry />
+      </span>
+      <span class="col-sm">e.g. 11 / 21</span>
+    </div>
+    <div class="row">
+      <span class="col-sm">CVC</span>
+      <span class="col-sm">
+        <input required type="text" formControlName="cvc" payments-cvc />
+      </span>
+      <span class="col-sm"></span>
+    </div>
+    <div class="row">
+      <span class="col-sm"></span>
+      <span class="col-sm">
+        <input class="col-sm" type="submit" value="Place Order" [disabled]="'INVALID'==creditCardForm.status" />
+      </span>
+      <span class="col-sm"></span>
+    </div>
+    <p>
+      ...
+    </p>
+    <p>
+      {{creditCardForm.value|json}}
+    </p>
+    <p>
+      Form Status: {{ creditCardForm.status }}
+    </p>
+    <h4>Response</h4>
+    <pre>
+        {{response|async|json}}
+    </pre>
+  </form>
+</div>
